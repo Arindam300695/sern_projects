@@ -1,3 +1,5 @@
+/** @format */
+
 // requiring npm packages
 const express = require("express");
 const cors = require("cors");
@@ -20,7 +22,10 @@ const connection = async () => {
 		if (result) {
 			console.log("connected to database successfully");
 			app.listen(8080, (err) => {
-				if (!err) console.log("app is listening on http://localhost:8080");
+				if (!err)
+					console.log(
+						"app is listening on https://online-book-store-iktx.onrender.com",
+					);
 				else console.log(err);
 			});
 		}

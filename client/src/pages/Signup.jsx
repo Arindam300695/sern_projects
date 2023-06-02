@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -5,7 +7,7 @@ import { toast } from "react-toastify";
 import readingBook from "../assets/readingBook.png";
 import Navbar from "../components/Navbar";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://online-book-store-iktx.onrender.com";
 
 const Signup = () => {
 	const navigate = useNavigate();
@@ -34,7 +36,10 @@ const Signup = () => {
 			return toast.error("All the fields are required");
 		else {
 			try {
-				const res = await axios.post(`${baseUrl}/auth/register`, userData);
+				const res = await axios.post(
+					`${baseUrl}/auth/register`,
+					userData,
+				);
 				if (res.data.error) return toast.error(res.data.error);
 				else {
 					setTimeout(() => {
@@ -100,12 +105,18 @@ const Signup = () => {
 					/>
 					<button
 						className="border border-slate-900 p-2 rounded-md transition-all duration-500 hover:bg-slate-900  hover:translate-x-2 hover:text-white"
-						onClick={signUpHandler}>
+						onClick={signUpHandler}
+					>
 						Signup
 					</button>
 					<h2>
-						<span className="font-bold">Already have an account?</span>
-						<NavLink to="/login" className="font-semibold text-blue-600">
+						<span className="font-bold">
+							Already have an account?
+						</span>
+						<NavLink
+							to="/login"
+							className="font-semibold text-blue-600"
+						>
 							Login
 						</NavLink>
 						<span> here</span>

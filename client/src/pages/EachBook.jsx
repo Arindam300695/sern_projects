@@ -1,10 +1,12 @@
+/** @format */
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://online-book-store-iktx.onrender.com";
 
 const EachBook = () => {
 	const navigate = useNavigate();
@@ -72,7 +74,7 @@ const EachBook = () => {
 							"Content-Type": "application/json",
 							Authorization: token,
 						},
-					}
+					},
 				);
 				console.log(res);
 				if (res.data.error) return toast.error(res.data.error);
@@ -89,12 +91,15 @@ const EachBook = () => {
 	// deleteHandler funtion
 	const deleteHandler = async (bookId) => {
 		try {
-			const res = await axios.delete(`${baseUrl}/book/deleteBook/${bookId}`, {
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: token,
+			const res = await axios.delete(
+				`${baseUrl}/book/deleteBook/${bookId}`,
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: token,
+					},
 				},
-			});
+			);
 			if (res.data.error) return toast.error(res.data.error);
 			else {
 				setTimeout(() => {
@@ -110,32 +115,47 @@ const EachBook = () => {
 	return (
 		<div>
 			<Navbar />
-			<div className={`${isVisible ? "grid grid-cols-1 md:grid-cols-2" : ""}`}>
+			<div
+				className={`${
+					isVisible ? "grid grid-cols-1 md:grid-cols-2" : ""
+				}`}
+			>
 				{bookData.map((book) => (
 					<div
 						key={book.id}
-						className="w-64 p-3 shadow-md shadow-[#0C134F] m-auto mt-24 text-2xl md:text-base transition-all duration-300 hover:scale-125 hover:bg-slate-700 hover:text-slate-300 flex flex-col justify-center">
-						<img src={book.bookImageUrl} alt="book" className="mb-4" />
+						className="w-64 p-3 shadow-md shadow-[#0C134F] m-auto mt-24 text-2xl md:text-base transition-all duration-300 hover:scale-125 hover:bg-slate-700 hover:text-slate-300 flex flex-col justify-center"
+					>
+						<img
+							src={book.bookImageUrl}
+							alt="book"
+							className="mb-4"
+						/>
 						<h1 className="mb-2">
-							title: <span className="font-bold">{book.title}</span>
+							title:{" "}
+							<span className="font-bold">{book.title}</span>
 						</h1>
 						<hr className="mb-4" />
 						<h1 className="mb-4">
 							description:{" "}
-							<span className="font-semibold">{book.description}</span>
+							<span className="font-semibold">
+								{book.description}
+							</span>
 						</h1>
 						<h1 className="mb-4">
-							written by: <span className="font-semibold">{book.author}</span>
+							written by:{" "}
+							<span className="font-semibold">{book.author}</span>
 						</h1>
 						<h1 className="mb-4">
-							price: <span className="font-semibold">${book.price}</span>
+							price:{" "}
+							<span className="font-semibold">${book.price}</span>
 						</h1>
 						{/* edit button */}
 						<button
 							className="border-2 border-purple-400 p-2 transition-all duration-300 rounded-md mb-3 hover:translate-x-2 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
 							onClick={() => {
 								editHandler(book.id);
-							}}>
+							}}
+						>
 							Edit
 						</button>
 						{/* delete button */}
@@ -143,7 +163,8 @@ const EachBook = () => {
 							className="border-2 border-purple-400 p-2 transition-all duration-300 hover:translate-x-2 rounded-md mb-3 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
 							onClick={() => {
 								deleteHandler(book.id);
-							}}>
+							}}
+						>
 							Delete
 						</button>
 					</div>
@@ -200,7 +221,8 @@ const EachBook = () => {
 							className="border border-teal-950"
 							onClick={() => {
 								confirmedEditHandler(id);
-							}}>
+							}}
+						>
 							Confirm
 						</button>
 					</div>

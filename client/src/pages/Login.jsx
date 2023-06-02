@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -5,7 +7,7 @@ import { toast } from "react-toastify";
 import readingBook from "../assets/readingBook2.png";
 import Navbar from "../components/Navbar";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://online-book-store-iktx.onrender.com";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -43,7 +45,11 @@ const Login = () => {
 		<div>
 			<Navbar />
 			<div className="grid grid-cols-1 sm:grid-cols-2">
-				<img src={readingBook} alt="book image" className="hidden sm:inline" />
+				<img
+					src={readingBook}
+					alt="book image"
+					className="hidden sm:inline"
+				/>
 				<div className="flex flex-col w-60 p-4 h-96 shadow-md shadow-[#0C134F] mt-32 m-auto justify-center gap-5 text-2xl md:text-base">
 					{/* email field */}
 					<input
@@ -66,12 +72,16 @@ const Login = () => {
 					/>
 					<button
 						className="border border-slate-900 p-2 rounded-md transition-all duration-500 hover:bg-slate-900  hover:translate-x-2 hover:text-white"
-						onClick={loginHandler}>
+						onClick={loginHandler}
+					>
 						Login
 					</button>
 					<h2>
 						<span className="font-bold">Dont have an account?</span>
-						<NavLink to="/signup" className="font-semibold text-blue-600">
+						<NavLink
+							to="/signup"
+							className="font-semibold text-blue-600"
+						>
 							Signup
 						</NavLink>
 						<span> here</span>

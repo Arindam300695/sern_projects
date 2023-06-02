@@ -13,7 +13,6 @@ const createBookController = asyncHandler(async (req, res) => {
 
 	// need to check wheteher the book is already exists or not
 	const existingBook = await Book.findOne({ where: { title } });
-	console.log(existingBook);
 	if (existingBook) return res.json({ error: "book already exists" });
 
 	// if everything is fine then need to save the book to the database
