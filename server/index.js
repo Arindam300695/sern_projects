@@ -23,9 +23,7 @@ const connection = async () => {
 			console.log("connected to database successfully");
 			app.listen(8080, (err) => {
 				if (!err)
-					console.log(
-						"app is listening on https://online-book-store-iktx.onrender.com",
-					);
+					console.log("app is listening on http://localhost:8080");
 				else console.log(err);
 			});
 		}

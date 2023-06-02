@@ -18,14 +18,16 @@ const Payment = () => {
 	const [isChecked, setIsChecked] = useState(false);
 	const [isPaid, setIsPaid] = useState(false);
 
+	console.log(typeof creditCardData);
+
 	const changeHandler = (event) => {
 		const { value } = event.target;
 
 		// Remove non-digit characters and limit to 16 digits
 		const sanitizedValue = value.replace(/\D/g, "").slice(0, 16);
-		const formattedValue = sanitizedValue.replace(/(\d{4})/g, "$1 ");
+		// const formattedValue = sanitizedValue.replace(/(\d{4})/g, "$1 ");
 
-		setCreditCardData(formattedValue);
+		setCreditCardData(sanitizedValue);
 	};
 
 	const changeCVVHandler = (event) => {
@@ -33,9 +35,9 @@ const Payment = () => {
 
 		// Remove non-digit characters and limit to 16 digits
 		const sanitizedValue = value.replace(/\D/g, "").slice(0, 3);
-		const formattedValue = sanitizedValue.replace(/(\d{3})/g, "$1 ");
+		// const formattedValue = sanitizedValue.replace(/(\d{3})/g);
 
-		setCVVData(formattedValue);
+		setCVVData(sanitizedValue);
 	};
 
 	useEffect(() => {
@@ -79,7 +81,13 @@ const Payment = () => {
 					</div>
 					<div className="text-lg font-semibold text-gray-600">
 						<h1 className="text-[#a69b8d]">Enter Your Card NO</h1>
-						{creditCardData}
+						{`${creditCardData.slice(0, 4)} ${creditCardData.slice(
+							4,
+							8,
+						)} ${creditCardData.slice(
+							8,
+							12,
+						)} ${creditCardData.slice(12, 16)} `}
 					</div>
 					<div className="mb-4 text-lg">
 						<div className="font-bold">Cardholder Name</div>

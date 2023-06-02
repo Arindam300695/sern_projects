@@ -142,7 +142,7 @@ const Navbar = () => {
 					</>
 				)}
 			</ul>
-			<ToastContainer position="bottom-right" />
+			<ToastContainer position="top-left" />
 		</div>
 	);
 };

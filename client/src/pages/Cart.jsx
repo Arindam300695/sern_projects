@@ -114,10 +114,20 @@ const Cart = () => {
 										{book.quantity * book.price}
 									</td>
 									<td className="flex flex-row px-6 py-4 border-b border-gray-300">
-										<button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+										<button
+											className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+											onClick={() => {
+												increaseCountHandler(book.id);
+											}}
+										>
 											Add
 										</button>
-										<button className="px-4 py-2 ml-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">
+										<button
+											className="px-4 py-2 ml-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+											onClick={() => {
+												deleteHandler(book.id);
+											}}
+										>
 											Delete
 										</button>
 									</td>

@@ -40,6 +40,10 @@ const Home = () => {
 	const addToCartHandler = (data) => {
 		toast.success("Item added to cart");
 		dispatch(addToCart(data));
+		if (user.length === 0)
+			setTimeout(() => {
+				navigate("/login");
+			}, 200);
 	};
 
 	return (
