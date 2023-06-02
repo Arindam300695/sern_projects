@@ -76,7 +76,6 @@ const EachBook = () => {
 						},
 					},
 				);
-				console.log(res);
 				if (res.data.error) return toast.error(res.data.error);
 				else {
 					setBookData([res.data.updatedBook]);
@@ -151,7 +150,7 @@ const EachBook = () => {
 						</h1>
 						{/* edit button */}
 						<button
-							className="border-2 border-purple-400 p-2 transition-all duration-300 rounded-md mb-3 hover:translate-x-2 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
+							className="p-2 mb-3 transition-all duration-300 border-2 border-purple-400 rounded-md hover:translate-x-2 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
 							onClick={() => {
 								editHandler(book.id);
 							}}
@@ -160,7 +159,7 @@ const EachBook = () => {
 						</button>
 						{/* delete button */}
 						<button
-							className="border-2 border-purple-400 p-2 transition-all duration-300 hover:translate-x-2 rounded-md mb-3 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
+							className="p-2 mb-3 transition-all duration-300 border-2 border-purple-400 rounded-md hover:translate-x-2 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
 							onClick={() => {
 								deleteHandler(book.id);
 							}}
@@ -179,7 +178,7 @@ const EachBook = () => {
 							name="title"
 							value={dataToBeUpdated.title}
 							onChange={changeHandler}
-							className="focus:outline-none border-b-2 border-b-slate-900 mb-5 p-3"
+							className="p-3 mb-5 border-b-2 focus:outline-none border-b-slate-900"
 						/>
 						{/* description field */}
 						<input
@@ -188,7 +187,7 @@ const EachBook = () => {
 							name="description"
 							value={dataToBeUpdated.description}
 							onChange={changeHandler}
-							className="focus:outline-none border-b-2 border-b-slate-900 mb-5 p-3"
+							className="p-3 mb-5 border-b-2 focus:outline-none border-b-slate-900"
 						/>
 						{/* author field */}
 						<input
@@ -197,7 +196,7 @@ const EachBook = () => {
 							name="author"
 							value={dataToBeUpdated.author}
 							onChange={changeHandler}
-							className="focus:outline-none border-b-2 border-b-slate-900 mb-5 p-3"
+							className="p-3 mb-5 border-b-2 focus:outline-none border-b-slate-900"
 						/>
 						{/* price field*/}
 						<input
@@ -206,7 +205,7 @@ const EachBook = () => {
 							name="price"
 							value={dataToBeUpdated.price}
 							onChange={changeHandler}
-							className="focus:outline-none border-b-2 border-b-slate-900 mb-5 p-3"
+							className="p-3 mb-5 border-b-2 focus:outline-none border-b-slate-900"
 						/>
 						{/* book image url field */}
 						<input
@@ -215,7 +214,7 @@ const EachBook = () => {
 							name="bookImageUrl"
 							value={dataToBeUpdated.bookImageUrl}
 							onChange={changeHandler}
-							className="focus:outline-none border-b-2 border-b-slate-900 mb-5 p-3"
+							className="p-3 mb-5 border-b-2 focus:outline-none border-b-slate-900"
 						/>
 						<button
 							className="border border-teal-950"
