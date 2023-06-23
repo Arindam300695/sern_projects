@@ -23,7 +23,7 @@ const connect = async () => {
         );
         console.log("successfylly connected with the database");
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     }
 };
 
@@ -37,5 +37,5 @@ app.listen(process.env.port, async (err) => {
     if (!err) {
         await connect();
         console.log(`App is listening on ${process.env.port}`);
-    } else console.log(err);
+    } else console.log(err.message);
 });
