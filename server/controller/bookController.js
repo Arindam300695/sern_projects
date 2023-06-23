@@ -98,7 +98,7 @@ const deleteBookController = asyncHandler(async (req, res) => {
         return res.json({ error: "You are not allowed to delete this" });
     }
     try {
-        await Book.findByIdAndDelete({ id });
+        await Book.findByIdAndDelete(id);
         return res.json({ message: "Book deleted successfully" });
     } catch (error) {
         return res.json({ error: error.message });
