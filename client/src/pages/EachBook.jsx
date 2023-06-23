@@ -122,7 +122,7 @@ const EachBook = () => {
                 {bookData.map((book) => (
                     <div
                         key={book._id}
-                        className="w-64 p-3 shadow-md shadow-[#0C134F] m-auto mt-24 text-2xl md:text-base transition-all duration-300 hover:scale-125 hover:bg-slate-700 hover:text-slate-300 flex flex-col justify-center"
+                        className="w-64 mb-10 p-3 shadow-md shadow-[#0C134F] m-auto mt-24 text-2xl md:text-base transition-all duration-300 hover:scale-[1.05] hover:bg-slate-700 hover:text-slate-300 flex flex-col justify-center"
                     >
                         <img
                             src={book.bookImageUrl}
