@@ -9,6 +9,7 @@ const authRouter = require("./route/authRoute");
 const bookRouter = require("./route/bookRoute");
 const User = require("./model/userModel");
 const Book = require("./model/bookModel");
+const port = 8080;
 
 // usiong the express middleware
 app.use(cors());
@@ -17,19 +18,18 @@ app.use(express.urlencoded({ extended: false }));
 
 // connecting to database
 const connection = async () => {
-	try {
-		const result = await sequelize.sync();
-		if (result) {
-			console.log("connected to database successfully");
-			app.listen(8080, (err) => {
-				if (!err)
-					console.log("app is listening on http://localhost:8080");
-				else console.log(err);
-			});
-		}
-	} catch (error) {
-		console.log(error.message);
-	}
+    try {
+        const result = await sequelize.sync({});
+        if (result) {
+            console.log("connected to database successfully");
+            app.listen(port, (err) => {
+                if (!err) console.log(`app is listening on ${port}`);
+                else console.log(err);
+            });
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
 };
 
 connection();

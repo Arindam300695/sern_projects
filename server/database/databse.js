@@ -2,6 +2,14 @@
 
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
-const sequelize = new Sequelize(process.env.DB_URI);
-
+const sequelize = new Sequelize(
+    process.env.db_name,
+    process.env.db_user,
+    process.env.db_pass,
+    {
+        host: process.env.db_host,
+        dialect:
+            "mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */,
+    }
+);
 module.exports = sequelize;
