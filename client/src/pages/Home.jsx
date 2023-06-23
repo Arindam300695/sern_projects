@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import loader from "../assets/loader.gif";
 import Navbar from "../components/Navbar";
 import { addToCart } from "../store/cartSlice";
-const baseUrl = " http://localhost:8080";
+const baseUrl = "  https://online-book-store-rhoe.onrender.com";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const Home = () => {
         if (localStorageUser !== null) setUser([localStorageUser]);
         const fetchAllBooks = async () => {
             const response = await axios.get(`${baseUrl}/book/getBooks`);
+            console.log(response.data);
             setTimeout(() => {
                 setbookData(response.data);
             }, 3000);
