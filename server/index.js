@@ -15,12 +15,13 @@ const connect = async () => {
     try {
         await mongoose.connect(
             // "mongodb+srv://Arindam300695:Born2win@1995@cluster0.nllhefz.mongodb.net/bookStore",
-            process.env.db_Url,
+            process.env.db_url,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             }
         );
+        console.log(process.env.db_url);
         console.log("successfylly connected with the database");
     } catch (error) {
         console.log(error.message);
@@ -36,6 +37,6 @@ app.use("/book", bookRouter);
 app.listen(process.env.port, async (err) => {
     if (!err) {
         await connect();
-        console.log(`App is listening on ${process.env.port}`);
+        console.log(`App is listening on ${process.env.port || 8080}`);
     } else console.log(err.message);
 });
