@@ -1,45 +1,41 @@
-/** @format */
-
-// requiring npm packages
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const sequelize = require("./database/databse");
+const mongoose = require("mongoose");
 const authRouter = require("./route/authRoute");
 const bookRouter = require("./route/bookRoute");
-const User = require("./model/userModel");
-const Book = require("./model/bookModel");
-const port = 8080;
+require("dotenv").config();
 
-// usiong the express middleware
+// Using the express middleware
 app.use(cors());
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: false }));
 
-// connecting to database
-const connection = async () => {
+const connect = async () => {
     try {
-        const result = await sequelize.sync({});
-        if (result) {
-            console.log("connected to database successfully");
-            app.listen(port, (err) => {
-                if (!err) console.log(`app is listening on ${port}`);
-                else console.log(err);
-            });
-        }
+        await mongoose.connect(
+            // "mongodb+srv://Arindam300695:Born2win@1995@cluster0.nllhefz.mongodb.net/bookStore",
+            process.env.db_Url,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            }
+        );
+        console.log("successfylly connected with the database");
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 };
 
-connection();
-
-// declaring the relation between User and Book
-User.hasMany(Book);
-Book.belongsTo(User);
-
-// auth routes
+// Auth routes
 app.use("/auth", authRouter);
 
-// book routes
+// Book routes
 app.use("/book", bookRouter);
+
+app.listen(process.env.port, async (err) => {
+    if (!err) {
+        await connect();
+        console.log(`App is listening on ${process.env.port}`);
+    } else console.log(err);
+});

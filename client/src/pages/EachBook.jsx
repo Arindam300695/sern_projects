@@ -121,7 +121,7 @@ const EachBook = () => {
             >
                 {bookData.map((book) => (
                     <div
-                        key={book.id}
+                        key={book._id}
                         className="w-64 p-3 shadow-md shadow-[#0C134F] m-auto mt-24 text-2xl md:text-base transition-all duration-300 hover:scale-125 hover:bg-slate-700 hover:text-slate-300 flex flex-col justify-center"
                     >
                         <img
@@ -152,7 +152,7 @@ const EachBook = () => {
                         <button
                             className="p-2 mb-3 transition-all duration-300 border-2 border-purple-400 rounded-md hover:translate-x-2 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
                             onClick={() => {
-                                editHandler(book.id);
+                                editHandler(book._id);
                             }}
                         >
                             Edit
@@ -161,7 +161,7 @@ const EachBook = () => {
                         <button
                             className="p-2 mb-3 transition-all duration-300 border-2 border-purple-400 rounded-md hover:translate-x-2 hover:bg-white hover:text-slate-950 hover:border-teal-950 hover:font-bold"
                             onClick={() => {
-                                deleteHandler(book.id);
+                                deleteHandler(book._id);
                             }}
                         >
                             Delete

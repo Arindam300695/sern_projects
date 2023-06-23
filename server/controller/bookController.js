@@ -1,39 +1,43 @@
-/** @format */
-
 const asyncHandler = require("express-async-handler");
 const Book = require("../model/bookModel");
 
-// creating a new book and saving it to database
+// Creating a new book and saving it to the database
 const createBookController = asyncHandler(async (req, res) => {
     const userId = req.userId;
     const { title, description, author, price, bookImageUrl } = req.body;
-    // checking if any field is empty
-    if (!title || !description || !author || !price || !bookImageUrl)
-        return res.json({ error: "all the fields are required" });
 
-    // need to check wheteher the book is already exists or not
-    const existingBook = await Book.findOne({ where: { title } });
-    if (existingBook) return res.json({ error: "book already exists" });
+    // Checking if any field is empty
+    if (!title || !description || !author || !price || !bookImageUrl) {
+        return res.json({ error: "All the fields are required" });
+    }
 
-    // if everything is fine then need to save the book to the database
-    const book = await Book.create({
+    // Need to check whether the book already exists or not
+    const existingBook = await Book.findOne({ title });
+    if (existingBook) {
+        return res.json({ error: "Book already exists" });
+    }
+
+    // If everything is fine, then save the book to the database
+    const book = new Book({
         title,
         description,
         author,
         price,
         bookImageUrl,
-        UserId: userId,
+        userId,
     });
+    await book.save();
+
     try {
-        res.json({ message: "book saved to databse", book });
+        res.json({ message: "Book saved to database", book });
     } catch (error) {
-        return res.json({ error: "something went wrong" });
+        return res.json({ error: "Something went wrong" });
     }
 });
 
-// get all books
+// Get all books
 const getAllBooksController = asyncHandler(async (req, res) => {
-    const result = await Book.findAll();
+    const result = await Book.find();
     try {
         if (result) {
             return res.json(result);
@@ -43,10 +47,10 @@ const getAllBooksController = asyncHandler(async (req, res) => {
     }
 });
 
-// get a single book based on it's id
+// Get a single book based on its id
 const getSingleBookController = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const result = await Book.findByPk(id);
+    const result = await Book.findById(id);
     try {
         if (result) {
             return res.json(result);
@@ -56,39 +60,47 @@ const getSingleBookController = asyncHandler(async (req, res) => {
     }
 });
 
-// update book
+// Update book
 const updateBookController = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const userId = req.userId;
     const { title, description, author, price, bookImageUrl } = req.body;
-    const result = await Book.findByPk(id);
-    if (result.UserId !== userId)
-        return res.json({ error: "you are not allowed to do changes to this" });
+    const result = await Book.findById(id);
+    if (result.userId.toString() !== userId) {
+        return res.json({
+            error: "You are not allowed to make changes to this",
+        });
+    }
     try {
         if (result) {
-            await Book.update(
-                { title, description, author, price, bookImageUrl },
-                { where: { id } }
-            );
-            const updatedBook = await Book.findByPk(id);
-            return res.json({ message: "updated successfully", updatedBook });
+            result.title = title;
+            result.description = description;
+            result.author = author;
+            result.price = price;
+            result.bookImageUrl = bookImageUrl;
+            await result.save();
+            return res.json({
+                message: "Updated successfully",
+                updatedBook: result,
+            });
         }
     } catch (error) {
         return res.json({ error: error.message });
     }
 });
 
-// delete book
+// Delete book
 const deleteBookController = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const userId = req.userId;
-    const result = await Book.findByPk(id);
-    if (result.UserId !== userId)
-        return res.json({ error: "you are not allowed to delete this" });
+    const result = await Book.findById(id);
+    if (result.userId.toString() !== userId) {
+        return res.json({ error: "You are not allowed to delete this" });
+    }
     try {
         if (result) {
-            await Book.destroy({ where: { id } });
-            return res.json({ message: "book deleted successfully" });
+            await result.remove();
+            return res.json({ message: "Book deleted successfully" });
         }
     } catch (error) {
         return res.json({ error: error.message });

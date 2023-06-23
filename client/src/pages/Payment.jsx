@@ -18,8 +18,6 @@ const Payment = () => {
 	const [isChecked, setIsChecked] = useState(false);
 	const [isPaid, setIsPaid] = useState(false);
 
-	console.log(typeof creditCardData);
-
 	const changeHandler = (event) => {
 		const { value } = event.target;
 

@@ -21,7 +21,6 @@ const Home = () => {
         if (localStorageUser !== null) setUser([localStorageUser]);
         const fetchAllBooks = async () => {
             const response = await axios.get(`${baseUrl}/book/getBooks`);
-
             setTimeout(() => {
                 setbookData(response.data);
             }, 3000);
@@ -61,7 +60,7 @@ const Home = () => {
                 <div className="grid max-h-screen grid-cols-1 gap-5 overflow-y-scroll sm:grid-cols-2">
                     {bookData.map((book) => (
                         <div
-                            key={book.id}
+                            key={book._id}
                             className="text-2xl md:text-base mt-2 mb-2 w-56 m-auto shadow-md shadow-[#27374D] p-5 transition-all duration-300 hover:scale-110 bg-[#060047] text-slate-200 rounded-lg text-center"
                         >
                             <img
@@ -83,7 +82,7 @@ const Home = () => {
                                     className="p-2 mb-2 transition-all duration-300 bg-purple-400 border border-teal-900 rounded-md text-slate-900 hover:bg-red-400 hover:text-white hover:font-bold"
                                     onClick={() => {
                                         addToCartHandler({
-                                            id: book.id,
+                                            id: book._id,
                                             bookImageUrl: book.bookImageUrl,
                                             title: book.title,
                                             description: book.description,
@@ -97,7 +96,7 @@ const Home = () => {
                                 <button
                                     className="border, border-teal-900 transition-all duration-300 bg-zinc-800 text-white rounded-md hover:bg-orange-300 hover:text-slate-800 hover:font-bold p-2"
                                     onClick={() => {
-                                        handleSubmit(book.id);
+                                        handleSubmit(book._id);
                                     }}
                                 >
                                     Get Details
