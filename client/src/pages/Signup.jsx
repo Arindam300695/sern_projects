@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import readingBook from "../assets/readingBook.png";
 import Navbar from "../components/Navbar";
 
-const baseUrl = "https://book-store-bznd.onrender.com";
+const baseUrl = "https://cute-red-lemming-ring.cyclic.app";
 
 const Signup = () => {
     const navigate = useNavigate();
