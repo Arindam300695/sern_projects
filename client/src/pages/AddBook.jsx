@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import addBook from "../assets/addBook.png";
 import Navbar from "../components/Navbar";
 
-const baseUrl = "  https://online-book-store-rhoe.onrender.com";
+const baseUrl = "https://book-store-bznd.onrender.com";
 
 const AddBook = () => {
     const navigate = useNavigate();
