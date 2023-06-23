@@ -93,7 +93,7 @@ const updateBookController = asyncHandler(async (req, res) => {
 const deleteBookController = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const userId = req.userId;
-    // const result = await Book.findById(id);
+    const result = await Book.findById(id);
     if (result.userId.toString() !== userId) {
         return res.json({ error: "You are not allowed to delete this" });
     }
